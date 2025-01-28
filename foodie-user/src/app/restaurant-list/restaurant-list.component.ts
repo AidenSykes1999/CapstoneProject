@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { RestaurantService } from '../restaurant.service';
 
 @Component({
   selector: 'app-restaurant-list',
-  imports: [],
   templateUrl: './restaurant-list.component.html',
-  styleUrl: './restaurant-list.component.css'
+  styleUrls: ['./restaurant-list.component.css']
 })
-export class RestaurantListComponent {
+export class RestaurantListComponent implements OnInit {
+  restaurants: any[] = [];
 
+  constructor(private restaurantService: RestaurantService) {}
+
+  ngOnInit(): void {
+    this.restaurantService.getRestaurants().subscribe((data: any) => {
+      this.restaurants = data;
+    });
+  }
 }

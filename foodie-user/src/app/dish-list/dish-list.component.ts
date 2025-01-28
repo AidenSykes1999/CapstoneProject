@@ -1,11 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { RestaurantService } from '../restaurant.service';
 
 @Component({
   selector: 'app-dish-list',
-  imports: [],
   templateUrl: './dish-list.component.html',
-  styleUrl: './dish-list.component.css'
+  styleUrls: ['./dish-list.component.css']
 })
-export class DishListComponent {
+export class DishListComponent implements OnInit {
+  dishes: any[] = [];
+  restaurantId!: number;
 
+  constructor(
+    private route: ActivatedRoute,
+    private restaurantService: RestaurantService
+  ) {}
+
+  ngOnInit(): void {
+    this.restaurantId = +this.route.snapshot.paramMap.get('id')!;
+    this.restaurantService.getDishesByRestaurantId(this.restaurantId).subscribe((data: any) => {
+      this.dishes = data;
+    });
+  }
 }

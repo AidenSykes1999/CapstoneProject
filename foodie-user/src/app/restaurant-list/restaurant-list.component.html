@@ -1,1 +1,10 @@
-<p>restaurant-list works!</p>
+<div class="container mt-4">
+    <h2>Restaurants</h2>
+    <ul class="list-group">
+      <li *ngFor="let restaurant of restaurants" class="list-group-item">
+        <a [routerLink]="['/restaurants', restaurant.id, 'dishes']">
+          {{ restaurant.name }} - {{ restaurant.location }}
+        </a>
+      </li>
+    </ul>
+  </div>

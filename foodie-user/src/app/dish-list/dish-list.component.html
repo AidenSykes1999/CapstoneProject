@@ -1,1 +1,9 @@
-<p>dish-list works!</p>
+<div class="container mt-4">
+    <h2>Dishes</h2>
+    <ul class="list-group">
+      <li *ngFor="let dish of dishes" class="list-group-item">
+        {{ dish.name }} - ${{ dish.price }}
+      </li>
+    </ul>
+    <a routerLink="/" class="btn btn-primary mt-3">Back to Restaurants</a>
+  </div>

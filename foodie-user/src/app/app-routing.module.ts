@@ -1,13 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component';
-import { AddDishComponent } from './add-dish/add-dish.component';
-import { AuthGuard } from './auth.guard';
+import { RestaurantListComponent } from './restaurant-list/restaurant-list.component';
+import { DishListComponent } from './dish-list/dish-list.component';
 
 const routes: Routes = [
-  { path: 'add-restaurant', component: AddRestaurantComponent, canActivate: [AuthGuard] },
-  { path: 'add-dish', component: AddDishComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: '/add-restaurant', pathMatch: 'full' }, // Default route
+  { path: '', component: RestaurantListComponent }, // Default route
+  { path: 'restaurants/:id/dishes', component: DishListComponent }, // Route for dishes
 ];
 
 @NgModule({
