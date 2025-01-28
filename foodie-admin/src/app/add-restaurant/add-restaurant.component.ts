@@ -7,7 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-restaurant.component.css']
 })
 export class AddRestaurantComponent implements OnInit {
-  restaurantForm!: FormGroup; // Definite assignment assertion
+  restaurantForm!: FormGroup; 
 
   constructor(private fb: FormBuilder) {}
 
@@ -21,7 +21,7 @@ export class AddRestaurantComponent implements OnInit {
   onSubmit(): void {
     if (this.restaurantForm.valid) {
       console.log(this.restaurantForm.value);
-      // Call backend API to save restaurant
+      // TODO
     }
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { RestaurantService } from '../restaurant.service';
+import { RestaurantService } from '../service/restaurant.service';
 
 @Component({
   selector: 'app-dish-list',
