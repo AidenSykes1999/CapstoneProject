@@ -1,11 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-restaurant',
-  imports: [],
   templateUrl: './add-restaurant.component.html',
-  styleUrl: './add-restaurant.component.css'
+  styleUrls: ['./add-restaurant.component.css']
 })
-export class AddRestaurantComponent {
+export class AddRestaurantComponent implements OnInit {
+  restaurantForm!: FormGroup; // Definite assignment assertion
 
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.restaurantForm = this.fb.group({
+      name: ['', Validators.required],
+      location: ['', Validators.required],
+    });
+  }
+
+  onSubmit(): void {
+    if (this.restaurantForm.valid) {
+      console.log(this.restaurantForm.value);
+      // Call backend API to save restaurant
+    }
+  }
 }

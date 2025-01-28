@@ -1,1 +1,11 @@
-<p>add-restaurant works!</p>
+<form [formGroup]="restaurantForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Restaurant Name:</label>
+      <input id="name" formControlName="name" />
+    </div>
+    <div>
+      <label for="location">Location:</label>
+      <input id="location" formControlName="location" />
+    </div>
+    <button type="submit" [disabled]="!restaurantForm.valid">Add Restaurant</button>
+  </form>

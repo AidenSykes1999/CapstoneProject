@@ -1,1 +1,15 @@
-<p>add-dish works!</p>
+<form [formGroup]="dishForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Dish Name:</label>
+      <input id="name" formControlName="name" />
+    </div>
+    <div>
+      <label for="price">Price:</label>
+      <input id="price" type="number" formControlName="price" />
+    </div>
+    <div>
+      <label for="restaurantId">Restaurant ID:</label>
+      <input id="restaurantId" formControlName="restaurantId" />
+    </div>
+    <button type="submit" [disabled]="!dishForm.valid">Add Dish</button>
+  </form>
