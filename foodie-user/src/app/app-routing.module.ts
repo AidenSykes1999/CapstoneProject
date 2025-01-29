@@ -4,8 +4,10 @@ import { RestaurantListComponent } from './restaurant-list/restaurant-list.compo
 import { DishListComponent } from './dish-list/dish-list.component';
 
 const routes: Routes = [
-  { path: '', component: RestaurantListComponent }, // Default route
-  { path: 'restaurants/:id/dishes', component: DishListComponent }, // Route for dishes
+  { path: '', redirectTo: '/restaurants', pathMatch: 'full' }, // Default route
+  { path: 'restaurants', component: RestaurantListComponent }, // View Restaurants
+  { path: 'dishes', component: DishListComponent }, // View Dishes
+  { path: 'restaurants/:id/dishes', component: DishListComponent }, // Dishes for a specific restaurant
 ];
 
 @NgModule({

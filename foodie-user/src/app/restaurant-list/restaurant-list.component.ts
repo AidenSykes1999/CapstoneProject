@@ -8,10 +8,9 @@ import { RestaurantService } from '../service/restaurant.service';
 })
 export class RestaurantListComponent implements OnInit {
   restaurants: any[] = [];
+  isLoading = true;
 
   constructor(private restaurantService: RestaurantService) {}
-
-  isLoading = true;
 
   ngOnInit(): void {
     this.restaurantService.getRestaurants().subscribe((data: any) => {
@@ -19,5 +18,4 @@ export class RestaurantListComponent implements OnInit {
       this.isLoading = false;
     });
   }
-  
 }

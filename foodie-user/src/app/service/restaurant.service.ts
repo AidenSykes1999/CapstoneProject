@@ -6,17 +6,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RestaurantService {
-  private apiUrl = ''; // TODO REPLACE WITH BACKEND API
+  private apiUrl = ''; //TODO
 
   constructor(private http: HttpClient) {}
 
-  // Fetch all restaurants
   getRestaurants(): Observable<any> {
     return this.http.get(`${this.apiUrl}/restaurants`);
   }
 
-  // Fetch dishes for a specific restaurant
   getDishesByRestaurantId(restaurantId: number): Observable<any> {
     return this.http.get(`${this.apiUrl}/restaurants/${restaurantId}/dishes`);
+  }
+
+  getAllDishes(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/dishes`);
   }
 }

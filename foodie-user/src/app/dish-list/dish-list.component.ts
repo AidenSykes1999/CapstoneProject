@@ -9,7 +9,8 @@ import { RestaurantService } from '../service/restaurant.service';
 })
 export class DishListComponent implements OnInit {
   dishes: any[] = [];
-  restaurantId!: number;
+  restaurantId: number | null = null;
+  isLoading = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -17,9 +18,21 @@ export class DishListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.restaurantId = +this.route.snapshot.paramMap.get('id')!;
-    this.restaurantService.getDishesByRestaurantId(this.restaurantId).subscribe((data: any) => {
-      this.dishes = data;
+    this.route.paramMap.subscribe(params => {
+      this.restaurantId = +params.get('id')!;
+      if (this.restaurantId) {
+        // Fetch dishes for a specific restaurant
+        this.restaurantService.getDishesByRestaurantId(this.restaurantId).subscribe((data: any) => {
+          this.dishes = data;
+          this.isLoading = false;
+        });
+      } else {
+        // Fetch all dishes
+        this.restaurantService.getAllDishes().subscribe((data: any) => {
+          this.dishes = data;
+          this.isLoading = false;
+        });
+      }
     });
   }
 }
