@@ -1,24 +1,22 @@
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-
-import { AddDishComponent } from './add-dish/add-dish.component';
-import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component';
+import { AddDishComponent } from './add-dish/add-dish.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AddDishComponent,
     AddRestaurantComponent,
+    AddDishComponent
   ],
   imports: [
-    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [],

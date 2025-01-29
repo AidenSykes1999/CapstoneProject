@@ -7,11 +7,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./add-dish.component.css']
 })
 export class AddDishComponent implements OnInit {
-  dishForm!: FormGroup; // Definite assignment assertion
+  dishForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder) {
     this.dishForm = this.fb.group({
       name: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0)]],
@@ -19,6 +17,7 @@ export class AddDishComponent implements OnInit {
     });
   }
 
+  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.dishForm.valid) {

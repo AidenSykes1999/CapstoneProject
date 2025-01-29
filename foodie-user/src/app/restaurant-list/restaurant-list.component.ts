@@ -11,9 +11,13 @@ export class RestaurantListComponent implements OnInit {
 
   constructor(private restaurantService: RestaurantService) {}
 
+  isLoading = true;
+
   ngOnInit(): void {
     this.restaurantService.getRestaurants().subscribe((data: any) => {
       this.restaurants = data;
+      this.isLoading = false;
     });
   }
+  
 }

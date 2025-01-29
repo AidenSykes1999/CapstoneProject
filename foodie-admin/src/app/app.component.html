@@ -1,1 +1,12 @@
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">Foodie Admin</a>
+    <div class="navbar-nav">
+      <a class="nav-link" routerLink="/add-restaurant">Add Restaurant</a>
+      <a class="nav-link" routerLink="/add-dish">Add Dish</a>
+    </div>
+  </div>
+</nav>
+<div class="container mt-4">
+  <router-outlet></router-outlet>
+</div>
