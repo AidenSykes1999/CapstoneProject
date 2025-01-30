@@ -1,24 +1,37 @@
 import { Component } from '@angular/core';
+import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
-import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-login',
+  standalone: false,
+
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
-
-  username: string = '';
-  password: string = '';
-
-  constructor(private authService: AuthService, private router: Router) {}
-
-  onSubmit(): void {
-    if (this.authService.login(this.username, this.password)) {
-      this.router.navigate(['/dashboard']);
-    } else {
-      alert('Invalid credentials');
-    }
+  public loginValid = true; 
+  public username = 'password'; 
+  public password = 'password123'; 
+ 
+  constructor(private router:Router, private userserv:UserService) { } 
+ 
+  public onSubmit(): void {
+    this.loginValid = true;
+    console.log('login', this.username, this.password);
+    this.userserv.loginUser(this.username).subscribe({next: resp => {console.log(resp);
+          if (resp !== undefined && resp.length > 0) {
+            for (let user of resp) {
+              if (user.password === this.password) {
+                localStorage.setItem("username", this.username);
+                this.router.navigate(['']);
+                return;
+              }
+            }
+          } else {
+            this.loginValid = false;
+          }
+        },
+      });
   }
 }

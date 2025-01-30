@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewDishComponent } from './view-dish.component';
+import { PagenotfoundComponent } from './pagenotfound.component';
 
-describe('ViewDishComponent', () => {
-  let component: ViewDishComponent;
-  let fixture: ComponentFixture<ViewDishComponent>;
+describe('PagenotfoundComponent', () => {
+  let component: PagenotfoundComponent;
+  let fixture: ComponentFixture<PagenotfoundComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ViewDishComponent]
+      imports: [PagenotfoundComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ViewDishComponent);
+    fixture = TestBed.createComponent(PagenotfoundComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DashboardComponent } from './dashboard.component';
+import { RestauranteditComponent } from './restaurantedit.component';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('RestauranteditComponent', () => {
+  let component: RestauranteditComponent;
+  let fixture: ComponentFixture<RestauranteditComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DashboardComponent]
+      imports: [RestauranteditComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(RestauranteditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

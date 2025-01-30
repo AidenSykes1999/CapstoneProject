@@ -1,0 +1,42 @@
+<h3>Add New Restaurant</h3>
+
+<div>
+    <form #restaurantform="ngForm" (submit)="saveRestaurant()">
+        <input type="text"
+        class="form-control"
+        [class.is-invalid]="restaurantid.invalid && restaurantid.touched"
+        name="restaurantid"
+        [(ngModel)]="rest.restaurantid"
+        required
+        #restaurantid="ngModel"
+        placeholder="Enter ID...">
+        <div *ngIf="restaurantid.invalid && restaurantid.touched" class="invalid-feedback">
+            ID is required and must be unique.
+        </div>
+        <input type="text" 
+        class="form-control" 
+        [class.is-invalid]="name.invalid && name.touched" 
+        name="name" 
+        [(ngModel)]="rest.name"
+        required 
+        #name="ngModel" 
+        placeholder="Enter Name...">
+        <div *ngIf="name.invalid && name.touched" class="invalid-feedback">
+            Name is required.
+        </div>
+        <input type="text"
+        class="form-control"
+        [class.is-invalid]="location.invalid && location.touched"
+        name="location"
+        [(ngModel)]="rest.location"
+        required
+        #location="ngModel"
+        placeholder="Enter Location...">
+        <div *ngIf="location.invalid && location.touched" class="invalid-feedback">
+            Location is required.
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Add Restaurant</button>
+        </div>
+    </form>
+</div>

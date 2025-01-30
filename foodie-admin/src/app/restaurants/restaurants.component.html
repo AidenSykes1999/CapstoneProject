@@ -1,0 +1,10 @@
+<div *ngIf="restaurants.length > 0">
+    <div *ngFor="let rest of restaurants">
+    <app-restaurant [restaurant]="rest"></app-restaurant>
+    <button class="btn btn-primary mb-3" (click)="edit(rest)">Edit</button>
+    <button class="btn btn-primary mb-3" (click)="delete(rest)">Delete</button>
+    </div> 
+</div>
+    <div class="container" *ngIf="restaurants.length <= 0"> 
+    <h1>No restaurants are in the system!!!</h1> 
+    </div> 
