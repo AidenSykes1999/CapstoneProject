@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component';
-import { AddDishComponent } from './add-dish/add-dish.component';
+import { LoginComponent } from './auth/login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RestaurantListComponent } from './restaurant/restaurant-list/restaurant-list.component';
+import { RestaurantFormComponent } from './restaurant/restaurant-form/restaurant-form.component';
+import { DishListComponent } from './dish/dish-list/dish-list.component';
+import { DishFormComponent } from './dish/dish-form/dish-form.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: 'add-restaurant', component: AddRestaurantComponent },
-  { path: 'add-dish', component: AddDishComponent },
-  { path: '', redirectTo: '/add-restaurant', pathMatch: 'full' }, // Default route
+  { path: '', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'restaurants', component: RestaurantListComponent, canActivate: [AuthGuard] },
+  { path: 'restaurants/add', component: RestaurantFormComponent, canActivate: [AuthGuard] },
+  { path: 'dishes', component: DishListComponent, canActivate: [AuthGuard] },
+  { path: 'dishes/add', component: DishFormComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({

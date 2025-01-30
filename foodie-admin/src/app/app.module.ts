@@ -1,25 +1,27 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth.guard';
+import { JwtModule } from "@auth0/angular-jwt";
+import { AuthInterceptor } from './auth/auth-interceptor.service';
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { AddRestaurantComponent } from './add-restaurant/add-restaurant.component';
-import { AddDishComponent } from './add-dish/add-dish.component';
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    AddRestaurantComponent,
-    AddDishComponent
-  ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:8080"],
+      },
+    })
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    AuthService,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ]
 })
 export class AppModule { }

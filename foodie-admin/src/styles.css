@@ -1,26 +1,4 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f9fa;
-}
+/* You can add global styles to this file, and also import other style files */
 
-.navbar {
-  margin-bottom: 20px;
-}
-
-.container {
-  max-width: 800px;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
-}
-
-.btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
