@@ -11,15 +11,18 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   public loginValid = true; 
-  public username = 'password'; 
-  public password = 'password123'; 
+  public username = 'abc'; 
+  public password = 'abc123'; 
  
   constructor(private router:Router, private userserv:UserService) { } 
  
   public onSubmit(): void {
     this.loginValid = true;
     console.log('login', this.username, this.password);
-    this.userserv.loginUser(this.username).subscribe({next: resp => {console.log(resp);
+    this.userserv.loginUser(this.username)
+      .subscribe({
+        next: resp => {
+          console.log(resp);
           if (resp !== undefined && resp.length > 0) {
             for (let user of resp) {
               if (user.password === this.password) {

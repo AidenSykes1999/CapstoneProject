@@ -3,18 +3,18 @@
       <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
         <h2>Log In</h2>
         <mat-error *ngIf="!loginValid">
-          Login Attempt failed: Password or Username not correct
+          The username or password were not recognized
         </mat-error>
         <mat-form-field>
           <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
           <mat-error>
-            Invalid User Name Try Again
+            Please provide a valid username
           </mat-error>
         </mat-form-field>
         <mat-form-field>
           <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
           <mat-error>
-            Incorrect Password
+            Please provide a valid password
           </mat-error>
         </mat-form-field>
         <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
