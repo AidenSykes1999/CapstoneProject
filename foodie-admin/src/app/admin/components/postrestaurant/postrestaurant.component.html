@@ -1,0 +1,27 @@
+<div class = "container">
+
+    <h2>Add Restaurant</h2>
+
+    <form [formGroup]="restaurantForm" (ngSubmit) = "addRestaurant()">
+
+        <mat-form-field appearance="outline" class = "form-field">
+            <mat-label>Name</mat-label>
+
+            <input matInput type = "text" placeholder="Restaurant Name..." formControlName="name"/>
+            <mat-error *ngIf="restaurantForm.get('name')?.hasError('required')">This input is required!</mat-error>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class = "form-field">
+            <mat-label>Location</mat-label>
+
+            <input matInput type = "text" placeholder="Location..." formControlName="location"/>
+            <mat-error *ngIf="restaurantForm.get('location')?.hasError('required')">This input is required!</mat-error>
+
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">Add Restaurant</button>
+
+
+    </form>
+</div>

@@ -1,5 +1,7 @@
 package com.capstone.foodiespringboot.services.admin.restaurant;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.capstone.foodiespringboot.dto.RestaurantDto;
@@ -25,6 +27,10 @@ public class RestaurantServiceImpl implements RestaurantService {
 		
 	}
 	
-	
+	public List<Restaurant> getAllRestaurants(){
+		
+		return restaurantRepository.findAll();
+		
+	}
 	
 }

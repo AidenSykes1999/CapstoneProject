@@ -19,6 +19,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { SignupComponent } from './signup/signup.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,7 @@ import { SignupComponent } from './signup/signup.component';
     LoginComponent,
     PagenotfoundComponent,
     EditrestaurantComponent,
-    SignupComponent
+    SignupComponent,
   ],
   imports: [
     CommonModule,
