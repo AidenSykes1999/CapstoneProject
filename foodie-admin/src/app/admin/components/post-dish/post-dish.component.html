@@ -1,0 +1,41 @@
+<div class="container">
+
+<h2>Add Dish</h2>
+
+<form [formGroup]="dishForm" (ngSubmit) = "addDish()">
+
+    <mat-form-field appearance="outline" class = "form-field">
+
+        <mat-label>Select a Restaurant</mat-label>
+
+        <mat-select formControlName="restaurantId" name="restaurantId">
+            <mat-option *ngFor="let restaurant of listOfRestaurants" [value]="restaurant.id">
+            {{restaurant.name}}
+        </mat-option>
+        </mat-select>
+        <mat-error *ngIf="dishForm.get('restaurantId')?.hasError('required')">This input is required!</mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="outline" class = "form-field">
+        <mat-label>Dish Name</mat-label>
+
+        <input matInput type = "text" placeholder="Dish Name..." formControlName="name"/>
+        <mat-error *ngIf="dishForm.get('name')?.hasError('required')">This input is required!</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class = "form-field">
+        <mat-label>Dish Price</mat-label>
+
+        <input matInput type = "number" placeholder="Price" formControlName="price"/>
+        <mat-error *ngIf="dishForm.get('price')?.hasError('required')">This input is required!</mat-error>
+
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Add Dish</button>
+
+
+</form>
+
+</div>

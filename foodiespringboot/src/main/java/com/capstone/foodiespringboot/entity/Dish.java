@@ -3,6 +3,7 @@ package com.capstone.foodiespringboot.entity;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import com.capstone.foodiespringboot.dto.DishDto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -26,7 +27,7 @@ public class Dish {
 	
 	private String name;
 	
-	private Long price;
+	private Float price;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "restaurant_id", nullable = false)
@@ -34,4 +35,16 @@ public class Dish {
 	@JsonIgnore
 	private Restaurant restaurant;
 
+	
+	public DishDto getDto() {
+		DishDto dishDto = new DishDto();
+		dishDto.setId(id);
+		dishDto.setName(name);
+		dishDto.setPrice(price);
+		dishDto.setRestaurantId(restaurant.getId());
+		return dishDto;
+
+		
+	}
+	
 }

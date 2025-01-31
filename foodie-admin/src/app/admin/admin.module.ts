@@ -8,13 +8,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { AngularMaterialModule } from '../AngularMaterialModule';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PostrestaurantComponent } from './components/postrestaurant/postrestaurant.component';
+import { PostDishComponent } from './components/post-dish/post-dish.component';
 
 
 @NgModule({
   declarations: [
     AdminComponent,
     DashboardComponent,
-    PostrestaurantComponent
+    PostrestaurantComponent,
+    PostDishComponent
   ],
   imports: [
     CommonModule,

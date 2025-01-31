@@ -30,7 +30,10 @@ public class WebSecurityConfiguration {
 				.csrf()
 				.disable()
 				.authorizeHttpRequests()
-				.requestMatchers("/authenticate", "/sign-up", "/order/**", "/api/admin/restaurant", "api/admin/dish")
+				.requestMatchers("/authenticate", "/sign-up", "/order/**", "/api/admin/restaurant", 
+						"/api/admin/dish", "/api/admin/restaurants","/api/admin/dishes", "/api/admin", "/admin/dish", 
+						 "/api/admin/dish", "api/admin/dishes", "/api/admin/search/{name}",
+						 "/api/admin/dish/{dishId}", "api/customer/dishes", "/api/customer/search/{name}")
 				.permitAll()
 				.and()
 				.authorizeHttpRequests()

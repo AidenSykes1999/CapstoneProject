@@ -18,6 +18,19 @@ export class AdminService {
   })
 }
 
+addDish(dishDto:any): Observable<any>{
+  return this.http.post(BASIC_URL + 'api/admin/dish', dishDto,  {
+    headers: this.createAuthorisationHeader(),
+})
+}
+
+getAllRestaurants(): Observable<any>{
+  return this.http.get(BASIC_URL + 'api/admin',   {
+    headers: this.createAuthorisationHeader(),
+})
+}
+
+
   private createAuthorisationHeader(): HttpHeaders{
     return new HttpHeaders().set(
       'Authorisation', 'Bearer ' + UserstorageService.getToken()
