@@ -30,6 +30,24 @@ getAllRestaurants(): Observable<any>{
 })
 }
 
+getAllDishes(): Observable<any> {
+  return this.http.get(BASIC_URL + 'api/admin/dishes', {
+    headers: this.createAuthorisationHeader(),
+  });
+}
+
+getAllDishesByName(name:any): Observable<any> {
+  return this.http.get(BASIC_URL + `api/admin/search/${name}`, {
+    headers: this.createAuthorisationHeader(),
+  });
+}
+
+deleteDish(dishId: any): Observable<any> {
+  return this.http.delete(BASIC_URL + `api/admin/dish/${dishId}`, {
+    headers: this.createAuthorisationHeader(),
+  });
+}
+
 
   private createAuthorisationHeader(): HttpHeaders{
     return new HttpHeaders().set(
