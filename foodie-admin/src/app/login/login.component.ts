@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { UserService } from '../service/user.service';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { AuthService } from '../service/auth/auth.service';
+import { UserstorageService } from '../service/storage/userstorage.service';
 
 @Component({
   selector: 'app-login',
@@ -10,31 +14,54 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
-  public loginValid = true; 
-  public username = 'abc'; 
-  public password = 'abc123'; 
+
+  loginForm!: FormGroup;
+
+  hidePassword = true;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ){ }
  
-  constructor(private router:Router, private userserv:UserService) { } 
- 
-  public onSubmit(): void {
-    this.loginValid = true;
-    console.log('login', this.username, this.password);
-    this.userserv.loginUser(this.username)
-      .subscribe({
-        next: resp => {
-          console.log(resp);
-          if (resp !== undefined && resp.length > 0) {
-            for (let user of resp) {
-              if (user.password === this.password) {
-                localStorage.setItem("username", this.username);
-                this.router.navigate(['']);
-                return;
-              }
-            }
-          } else {
-            this.loginValid = false;
-          }
-        },
-      });
+  ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email : [null, [Validators.required]],
+      password : [null, [Validators.required]],
+    })
   }
+
+  togglePasswordVisibility(){
+    this.hidePassword = !this.hidePassword;
+  }
+
+  onSubmit(): void{
+
+    const username = this.loginForm.get('email')!.value;
+    const password = this.loginForm.get('password')!.value;
+
+    this.authService.login(username,password).subscribe(
+      (res) => {
+
+        if(UserstorageService.isAdminLoggedIn()){
+          this.router.navigateByUrl('admin/dashboard');
+        }
+        else if(UserstorageService.isCustomerLoggedIn()){
+          this.router.navigateByUrl('customer/dashboard');
+        }
+
+        
+        
+      },
+
+      (error) =>{
+        this.snackBar.open('Bad Credentials', 'ERROR', {duration: 5000});
+      }
+    )
+
+
+  }
+
 }

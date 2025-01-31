@@ -1,3 +1,5 @@
+<div *ngIf="!isCustomerLoggedIn && !isAdminLoggedIn">
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Foodie</a>
@@ -17,7 +19,7 @@
             <a class="nav-link" routerLinkActive="active" routerLink="/restaurants">View Restaurants</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active" routerLink="/add">Add Restaurant</a>
+            <a class="nav-link" routerLinkActive="active" routerLink="/dishes">View Dishes</a>
           </li>
           <li class="nav-item" *ngIf="user.isAuthenticated()"> 
             <a class="nav-link" routerLinkActive="active" routerLink="/logout" 
@@ -27,3 +29,73 @@
       </div>
     </div>
   </nav>
+
+</div>
+
+<div *ngIf="isAdminLoggedIn">
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Foodie Admin Interface</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            
+            <li class="nav-item" *ngIf="!user.isAuthenticated()"> 
+              <a class="nav-link" routerLinkActive="active" routerLink="/admin/dashboard">Admin Dashboard</a>
+            </li>
+            <li class="nav-item" *ngIf="!user.isAuthenticated()"> 
+              <a class="nav-link" routerLinkActive="active" routerLink="/signup">Register new User</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/admin/restaurants">Manage Restaurants</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLinkActive="active" routerLink="/admin/dishes">Manage Dishes</a>
+            </li>
+            <li class="nav-item" *ngIf="!user.isAuthenticated()"> 
+              <a class="nav-link" routerLinkActive="active" routerLink="/logout" 
+              (click)="logout()">Log Out</a> 
+              </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  
+  </div>
+
+  <div *ngIf="isCustomerLoggedIn">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Foodie</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              
+              <li class="nav-item" *ngIf="!user.isAuthenticated()"> 
+                <a class="nav-link" routerLinkActive="active" routerLink="/customer/dashboard">Dashboard</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" routerLink="/customer/restaurants">View Restaurants</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" routerLinkActive="active" routerLink="/customer/dishes">Browse Dishes</a>
+              </li>
+              
+              <li class="nav-item" *ngIf="!user.isAuthenticated()"> 
+                <a class="nav-link" routerLinkActive="active" routerLink="/logout" 
+                (click)="logout()">Log Out</a> 
+                </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    
+    </div>
