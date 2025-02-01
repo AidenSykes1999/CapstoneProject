@@ -1,0 +1,23 @@
+// Java Jenkinsfile
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                // Use Maven wrapper if available
+                sh './mvnw clean package'
+            }
+        }
+        stage('Archive Artifacts') {
+            steps {
+                // Archive the generated JAR file (ensure the pattern matches your output)
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            }
+        }
+    }
+}

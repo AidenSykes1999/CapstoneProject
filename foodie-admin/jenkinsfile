@@ -1,0 +1,23 @@
+// Angular Jenkinsfile
+pipeline {
+    agent any
+    stages {
+        stage('Install Dependencies') {
+            steps {
+                sh 'npm install'
+            }
+        }
+        stage('Build') {
+            steps {
+                // Build the project in production mode
+                sh 'npm run build --prod'
+            }
+        }
+        stage('Archive Artifacts') {
+            steps {
+                // Archive the generated build artifacts
+                archiveArtifacts artifacts: 'dist/**', fingerprint: true
+            }
+        }
+    }
+}
