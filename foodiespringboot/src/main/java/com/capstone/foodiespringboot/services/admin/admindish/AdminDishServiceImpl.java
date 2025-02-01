@@ -39,5 +39,10 @@ public class AdminDishServiceImpl implements AdminDishService{
 		return dishes.stream().map(Dish::getDto).collect(Collectors.toList());
 	}
 	
+	public List<DishDto> getAllDishesByName(String name){
+		List<Dish> dishes = dishRepository.findAllByNameContaining(name);
+		return dishes.stream().map(Dish::getDto).collect(Collectors.toList());
+	}
+	
 	
 }

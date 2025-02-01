@@ -13,5 +13,7 @@ public class DishDto {
 	
 	private Long restaurantId;
 	
+	private String restaurantName;
+	
 
 }

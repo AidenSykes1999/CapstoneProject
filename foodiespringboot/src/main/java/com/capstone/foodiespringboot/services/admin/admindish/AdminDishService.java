@@ -11,4 +11,6 @@ public interface AdminDishService {
 	
 	List<DishDto> getAllDishes();
 	
+	List<DishDto> getAllDishesByName(String name);
+	
 }

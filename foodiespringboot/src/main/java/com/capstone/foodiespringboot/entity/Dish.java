@@ -42,6 +42,7 @@ public class Dish {
 		dishDto.setName(name);
 		dishDto.setPrice(price);
 		dishDto.setRestaurantId(restaurant.getId());
+		dishDto.setRestaurantName(restaurant.getName());
 		return dishDto;
 
 		

@@ -9,7 +9,7 @@ import { EditrestaurantComponent } from './restaurantedit/restaurantedit.compone
 import { SignupComponent } from './signup/signup.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'restaurants', pathMatch: 'full'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path:'login', component: LoginComponent},
   {path:'signup', component: SignupComponent},
   {path:'restaurants', component:RestaurantsComponent},
