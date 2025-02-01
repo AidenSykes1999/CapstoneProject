@@ -1,23 +1,40 @@
-// Angular Jenkinsfile
 pipeline {
     agent any
     stages {
-        stage('Install Dependencies') {
+        stage('Checkout Code') {
             steps {
-                sh 'npm install'
+                // Check out your repository (adjust branch name if needed)
+                git url: 'https://github.com/AidenSykes1999/CapstoneProject.git', branch: 'main'
             }
         }
-        stage('Build') {
+        stage('Install Dependencies & Build Angular App') {
             steps {
-                // Build the project in production mode
-                sh 'npm run build --prod'
+                dir('foodie-admin') {
+                    sh 'npm install'
+                    sh 'ng build --prod'
+                }
             }
         }
-        stage('Archive Artifacts') {
+        stage('Build Docker Image') {
             steps {
-                // Archive the generated build artifacts
-                archiveArtifacts artifacts: 'dist/**', fingerprint: true
+                dir('foodie-admin') {
+                    sh 'docker build -t foodie-admin:latest .'
+                }
             }
+        }
+        stage('Deploy Docker Container') {
+            steps {
+                sh 'docker rm -f foodie-admin-container || true'
+                sh 'docker run -d --name foodie-admin-container -p 80:80 foodie-admin:latest'
+            }
+        }
+    }
+    post {
+        success {
+            echo 'Angular application built and deployed successfully!'
+        }
+        failure {
+            echo 'Build failed.'
         }
     }
 }

@@ -1,23 +1,38 @@
-// Java Jenkinsfile
 pipeline {
     agent any
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
-                checkout scm
+                git url: 'https://github.com/AidenSykes1999/CapstoneProject.git', branch: 'main'
             }
         }
-        stage('Build') {
+        stage('Build Spring Boot App') {
             steps {
-                // Use Maven wrapper if available
-                sh './mvnw clean package'
+                dir('foodiespringboot') {
+                    sh './mvnw clean package'
+                }
             }
         }
-        stage('Archive Artifacts') {
+        stage('Build Docker Image') {
             steps {
-                // Archive the generated JAR file (ensure the pattern matches your output)
-                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+                dir('foodiespringboot') {
+                    sh 'docker build -t foodiespringboot:latest .'
+                }
             }
+        }
+        stage('Deploy Docker Container') {
+            steps {
+                sh 'docker rm -f foodiespringboot-container || true'
+                sh 'docker run -d --name foodiespringboot-container -p 8080:8080 foodiespringboot:latest'
+            }
+        }
+    }
+    post {
+        success {
+            echo 'Spring Boot application built and deployed successfully!'
+        }
+        failure {
+            echo 'Build failed.'
         }
     }
 }
