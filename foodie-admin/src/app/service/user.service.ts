@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UserService {
-  url: string = 'http://localhost:3000/users';
+  //url: string = 'http://localhost:3000/users';
+  url: string = 'http://foodiespringboot/users';
   constructor(private http: HttpClient) {}
   loginUser(username: string) {
     return this.http.get<any>(this.url + '?username=' + username);

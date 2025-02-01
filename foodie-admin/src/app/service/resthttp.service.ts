@@ -8,7 +8,8 @@ import { Restaurant } from '../model/restaurant';
   providedIn: 'root'
 })
 export class ResthttpService {
-  url:string = "http://localhost:3000/restaurants";
+ // url:string = "http://localhost:3000/restaurants";
+    url:string= "http://foodiespringboot/restaurants";
   constructor(private http:HttpClient, private router: Router) { } // Add Router to constructor
 
   getRestaurants():Observable<any>{

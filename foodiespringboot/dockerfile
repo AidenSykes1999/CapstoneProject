@@ -1,4 +1,24 @@
-FROM amazoncorretto:17 
-ADD foodiespringboot-0.0.1-SNAPSHOT.jar app.jar 
-EXPOSE 8080 
-CMD ["java","-jar","-Dspring.profiles.active=prod", "app.jar"] 
+# Stage 1: Build the JAR file (Maven or Gradle)
+FROM maven:3.8.5-openjdk-17 AS builder
+WORKDIR /app
+
+# Copy pom.xml and install dependencies to cache them
+COPY pom.xml .
+RUN mvn dependency:go-offline
+
+# Copy the source code and build the application
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Stage 2: Run the application
+FROM amazoncorretto:17
+WORKDIR /app
+
+# Copy the JAR file from the builder stage
+COPY --from=builder /app/target/foodiespringboot-0.0.1-SNAPSHOT.jar app.jar
+
+# Expose the port (default is 8080, adjust if needed)
+EXPOSE 8080
+
+# Run the Spring Boot app with the correct profile (prod)
+CMD ["java", "-jar", "-Dspring.profiles.active=prod", "app.jar"]

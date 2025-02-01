@@ -1,15 +1,13 @@
-# Stage 1: Build the Angular app
-FROM node:14 AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-# Adjust the build command if your Angular CLI version or settings differ
-RUN npm run build --prod
+FROM node:alpine
 
-# Stage 2: Serve the app using Nginx
-FROM nginx:alpine
-# Replace "your-angular-app" with your actual Angular output folder name under dist
-COPY --from=builder /app/dist/your-angular-app /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+WORKDIR /usr/src/app
+
+COPY . /usr/src/app
+
+RUN npm install -g @angular/cli
+
+RUN npm install
+
+EXPOSE 4200
+
+CMD ["ng", "serve", "--host", "0.0.0.0"]
